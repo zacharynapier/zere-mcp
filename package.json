@@ -1,0 +1,31 @@
+{
+  "name": "zere-mcp",
+  "version": "0.1.0",
+  "description": "A tiny, typed starting point for model context protocol servers.",
+  "license": "MIT",
+  "author": "Zachary Napier",
+  "type": "module",
+  "bin": {
+    "zere-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
