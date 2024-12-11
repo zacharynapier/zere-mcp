@@ -34,7 +34,10 @@ export function createServer(tools: readonly Tool[]): Server {
 
     const parsed = tool.input.safeParse(args);
     if (!parsed.success) {
-      throw new McpError(ErrorCode.InvalidParams, parsed.error.message);
+      const issues = parsed.error.issues.map(
+        (issue) => `${issue.path.join(".")}: ${issue.message}`,
+      );
+      throw new McpError(ErrorCode.InvalidParams, issues.join("; "));
     }
 
     try {
