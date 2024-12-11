@@ -6,7 +6,7 @@ import {
   McpError,
 } from "@modelcontextprotocol/sdk/types.js";
 import { zodToJsonSchema } from "zod-to-json-schema";
-import type { Tool } from "./tool.js";
+import { text, type Tool } from "./tool.js";
 
 export function createServer(tools: readonly Tool[]): Server {
   const server = new Server(
@@ -37,7 +37,12 @@ export function createServer(tools: readonly Tool[]): Server {
       throw new McpError(ErrorCode.InvalidParams, parsed.error.message);
     }
 
-    return tool.run(parsed.data);
+    try {
+      return await tool.run(parsed.data);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      return { ...text(message), isError: true };
+    }
   });
 
   return server;
