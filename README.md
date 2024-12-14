@@ -22,7 +22,29 @@ npm run dev
 ```
 
 The server speaks MCP over stdio, so it is meant to be launched by a client
-rather than used interactively.
+rather than used interactively. To poke at it by hand, build and open the
+[MCP Inspector](https://github.com/modelcontextprotocol/inspector):
+
+```sh
+npm run build
+npm run inspect
+```
+
+## Connecting a client
+
+Point any MCP client at the built entry point. For Claude Desktop, add this to
+`claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "zere": {
+      "command": "node",
+      "args": ["/absolute/path/to/zere-mcp/dist/index.js"]
+    }
+  }
+}
+```
 
 ## Adding a tool
 
