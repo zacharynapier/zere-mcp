@@ -20,7 +20,7 @@ export function createServer(tools: readonly Tool[]): Server {
     tools: tools.map((tool) => ({
       name: tool.name,
       description: tool.description,
-      inputSchema: zodToJsonSchema(tool.input),
+      inputSchema: zodToJsonSchema(tool.input, { $refStrategy: "none" }),
     })),
   }));
 
