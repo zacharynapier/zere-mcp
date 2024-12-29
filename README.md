@@ -9,6 +9,8 @@ tools, and start writing your own.
 
 ## Usage
 
+Requires Node 18 or later.
+
 ```sh
 npm install
 npm run build
@@ -72,7 +74,9 @@ export const tools = [add, currentTime, greet];
 
 The zod schema is converted to JSON Schema for `tools/list`, and incoming
 arguments are validated against it before `run` is called, so `run` always
-receives typed, parsed input.
+receives typed, parsed input. Invalid arguments are rejected with a protocol
+error; anything thrown from `run` is returned to the client as a tool error
+result, so the model can see what went wrong and try again.
 
 ## Layout
 
@@ -89,4 +93,4 @@ src/
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).
